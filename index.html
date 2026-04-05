@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jot Ajmani | Neural Nexus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #030305;
+            color: #a0aec0;
+            scroll-behavior: smooth;
+        }
+
+        .glass-card {
+            background: rgba(15, 15, 25, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-left: 4px solid #00f2fe;
+            background: rgba(20, 20, 35, 0.9);
+            transform: translateX(10px);
+            box-shadow: -10px 0 30px rgba(0, 242, 254, 0.1);
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        }
+
+        .btn-launch {
+            background: transparent;
+            border: 1px solid #00f2fe;
+            color: #00f2fe;
+            transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-launch:hover {
+            background: #00f2fe;
+            color: #030305;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Subtle scanline effect */
+        body::before {
+            content: " ";
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+    </style>
+</head>
+<body class="p-4 md:p-16">
+
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-24 relative">
+            <div class="flex items-center gap-3 font-mono text-xs tracking-[0.3em] text-cyan-500 mb-4 uppercase">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                </span>
+                System Live: Node_Indore_07
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-bold text-white tracking-tighter mb-6">
+                AI_Nexus<span class="text-cyan-500">.</span>
+            </h1>
+            
+            <p class="max-w-2xl text-xl text-gray-500 font-light leading-relaxed">
+                Centralized dashboard for <span class="text-white border-b border-cyan-500/30">Machine Learning</span> deployments. 
+                Optimized for real-time inference and predictive analytics.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <div class="glass-card p-10 rounded-sm group">
+                <div class="flex justify-between items-start mb-8">
+                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_01 ]</span>
+                    <i class="fas fa-eye text-cyan-500 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4 group-hover:neon-text transition">Shoplifting Detection</h2>
+                <p class="text-gray-400 font-light mb-8 leading-relaxed">
+                    Advanced behavioral analysis using <span class="text-cyan-400/80 font-mono">CNN-LSTM</span> architecture. 
+                    Processes high-frequency video frames to identify retail anomalies.
+                </p>
+                <div class="flex gap-4 items-center">
+                    <a href="https://huggingface.co/spaces/jotaj30/shoplifting-detection" target="_blank" class="btn-launch px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                        Initialize Session
+                    </a>
+                    <span class="text-[10px] font-mono text-green-500/60 uppercase">● Latency: 42ms</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 rounded-sm group">
+                <div class="flex justify-between items-start mb-8">
+                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_02 ]</span>
+                    <i class="fas fa-wave-square text-cyan-500 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4 group-hover:neon-text transition">Medical Speech Analysis</h2>
+                <p class="text-gray-400 font-light mb-8 leading-relaxed">
+                    Acoustic feature extraction for <span class="text-cyan-400/80 font-mono">Symptom Prediction</span>. 
+                    Converts vocal patterns into diagnostic triage data via Streamlit.
+                </p>
+                <div class="flex gap-4 items-center">
+                    <a href="#" target="_blank" class="btn-launch px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                        Initialize Session
+                    </a>
+                    <span class="text-[10px] font-mono text-green-500/60 uppercase">● Status: Active</span>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 rounded-sm group">
+                <div class="flex justify-between items-start mb-8">
+                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_03 ]</span>
+                    <i class="fas fa-brain text-purple-500 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4 group-hover:text-purple-400 transition">Duplicate Detection</h2>
+                <p class="text-gray-400 font-light mb-8 leading-relaxed">
+                    Semantic similarity engine powered by <span class="text-purple-400/80 font-mono">BERT Transformers</span>. 
+                    Cross-referencing Quora datasets to eliminate redundant queries.
+                </p>
+                <div class="flex gap-4 items-center">
+                    <a href="https://n8juaauz6yrhrysfdvx5x2.streamlit.app/" class="btn-launch !border-purple-500 !text-purple-500 hover:!bg-purple-500 hover:!text-black px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                        Initialize Session
+                    </a>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 rounded-sm group">
+                <div class="flex justify-between items-start mb-8">
+                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_04 ]</span>
+                    <i class="fas fa-utensils text-orange-500 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4 group-hover:text-orange-400 transition">Food Classification</h2>
+                <p class="text-gray-400 font-light mb-8 leading-relaxed">
+                    Deep CNN model trained on <span class="text-orange-400/80 font-mono">50+ Indian Cuisines</span>. 
+                    Real-time image tagging for dietary tracking and food logging.
+                </p>
+                <div class="flex gap-4 items-center">
+                    <a href="#" class="btn-launch !border-orange-500 !text-orange-500 hover:!bg-orange-500 hover:!text-black px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                        Initialize Session
+                    </a>
+                </div>
+            </div>
+
+            <div class="glass-card p-10 rounded-sm group md:col-span-2">
+                <div class="flex justify-between items-start mb-8">
+                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_05 ]</span>
+                    <i class="fas fa-dove text-pink-500 text-xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-4 group-hover:text-pink-400 transition">Endangered Bird Tracker</h2>
+                <p class="text-gray-400 font-light mb-8 leading-relaxed">
+                    Object detection for biodiversity monitoring. Using <span class="text-pink-400/80 font-mono">Computer Vision</span> 
+                    to track rare avian movements in Nepal's ecological zones.
+                </p>
+                <div class="flex gap-4 items-center">
+                    <a href="#" class="btn-launch !border-pink-500 !text-pink-500 hover:!bg-pink-500 hover:!text-black px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                        Initialize Session
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="font-mono text-[10px] tracking-widest text-gray-600 uppercase">
+                &copy; 2026 Jot Ajmani // Core_V3 // Terminal_Indore
+            </div>
+            <div class="flex gap-8 font-mono text-[10px] tracking-[0.2em] uppercase text-gray-500">
+                <span class="hover:text-cyan-500 cursor-pointer">GitHub</span>
+                <span class="hover:text-cyan-500 cursor-pointer">LinkedIn</span>
+                <span class="hover:text-cyan-500 cursor-pointer">Logs</span>
+            </div>
+            <div class="text-[10px] font-mono text-cyan-900">
+                STK_009_X86_64_ACTIVE
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
