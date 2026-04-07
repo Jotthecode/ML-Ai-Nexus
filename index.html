@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jot Ajmani | Neural Nexus</title>
+    <title>Jot Ajmani | Neural Nexus V4</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -16,6 +16,12 @@
                         sans: ['"Space Grotesk"', 'sans-serif'],
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #0e29d7 0%, #a61edb 45%, #ec4899 100%)',
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
                 }
             }
         }
@@ -23,186 +29,224 @@
 
     <style>
         body {
-            background-color: #030305;
-            color: #a0aec0;
+            background: #050508; /* Fallback */
+            color: #cbd5e0;
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-        .glass-card {
-            background: rgba(15, 15, 25, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* Fixed Premium Gradient Background (Source Image Inspired) */
+        .page-background {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0919a3 0%, #6e00ab 40%, #ec4899 100%);
+            opacity: 0.95;
         }
 
-        .glass-card:hover {
-            border-left: 4px solid #00f2fe;
-            background: rgba(20, 20, 35, 0.9);
-            transform: translateX(10px);
-            box-shadow: -10px 0 30px rgba(0, 242, 254, 0.1);
+        /* Glassmorphism: Bright, Glossy, Translucent (Source Image Inspired) */
+        .glass-card-premium {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .neon-text {
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.5);
+        /* Hover: Intense Light and Glow (Source Image Inspired) */
+        .glass-card-premium:hover {
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.07);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 255, 255, 0.1);
         }
+
+        /* Specific Accent Colors (Matching Card to Color of Icon) */
+        .card-accent-cyan:hover { border-color: #22d3ee; }
+        .card-accent-purple:hover { border-color: #c084fc; }
+        .card-accent-orange:hover { border-color: #fb923c; }
+        .card-accent-pink:hover { border-color: #f472b6; }
+
+        /* Icon Wrapper Glow (Source Image Inspired) */
+        .icon-glow-wrap {
+            position: relative;
+            z-index: 5;
+        }
+        
+        .card-accent-cyan:hover .icon-glow-wrap { text-shadow: 0 0 10px rgba(34, 211, 238, 0.8); }
+        .card-accent-purple:hover .icon-glow-wrap { text-shadow: 0 0 10px rgba(192, 132, 252, 0.8); }
+        .card-accent-orange:hover .icon-glow-wrap { text-shadow: 0 0 10px rgba(251, 146, 60, 0.8); }
+        .card-accent-pink:hover .icon-glow-wrap { text-shadow: 0 0 10px rgba(244, 114, 182, 0.8); }
 
         .btn-launch {
-            background: transparent;
-            border: 1px solid #00f2fe;
-            color: #00f2fe;
-            transition: all 0.3s ease;
+            border-radius: 12px;
             font-family: 'JetBrains Mono', monospace;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-launch::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .btn-launch:hover::after {
+            transform: translateX(100%);
         }
 
         .btn-launch:hover {
-            background: #00f2fe;
-            color: #030305;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            box-shadow: 0 0 20px currentColor;
+            filter: brightness(1.2);
         }
 
-        /* Subtle scanline effect */
-        body::before {
-            content: " ";
-            position: fixed;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            background-size: 100% 2px, 3px 100%;
+        /* Floating Light Artifact (Source Image Inspired) */
+        .light-artifact {
+            position: absolute;
+            width: 2px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.05);
             pointer-events: none;
-            z-index: 100;
+            z-index: 1;
         }
     </style>
 </head>
-<body class="p-4 md:p-16">
+<body class="p-6 md:p-20">
+    <div class="page-background animate-pulse-slow"></div>
 
-    <div class="max-w-6xl mx-auto">
-        <header class="mb-24 relative">
-            <div class="flex items-center gap-3 font-mono text-xs tracking-[0.3em] text-cyan-500 mb-4 uppercase">
-                <span class="relative flex h-2 w-2">
+    <div class="max-w-6xl mx-auto relative z-10">
+        <header class="mb-24 flex flex-col items-center text-center">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/5 border border-white/10 mb-8 font-mono text-[10px] tracking-[0.4em] text-cyan-300 uppercase">
+                <span class="relative flex h-3 w-3">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-500"></span>
                 </span>
-                System Live: Node_Indore_07
+                Active Node: Terminal_Indore_07
             </div>
 
-            <h1 class="text-6xl md:text-8xl font-bold text-white tracking-tighter mb-6">
-                AI_Nexus<span class="text-cyan-500">.</span>
+            <h1 class="text-7xl md:text-9xl font-bold text-white tracking-tighter mb-10 leading-none">
+                NEURAL<br/><span class="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">NEXUS.</span>
             </h1>
 
-            <p class="max-w-2xl text-xl text-gray-500 font-light leading-relaxed">
-                Centralized dashboard for <span class="text-white border-b border-cyan-500/30">Machine Learning</span> deployments. 
-                Optimized for real-time inference and predictive analytics.
+            <p class="max-w-xl text-lg md:text-xl text-gray-100/90 font-light leading-relaxed">
+                Centralized operations center for high-frequency <span class="text-white border-b border-cyan-400/30">ML models</span>. Monitoring cross-platform deployments and real-time inference data.
             </p>
         </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="light-artifact top-1/4 left-10"></div>
+            <div class="light-artifact top-3/4 right-20"></div>
 
-            <div class="glass-card p-10 rounded-sm group">
-                <div class="flex justify-between items-start mb-8">
-                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_01 ]</span>
-                    <i class="fas fa-eye text-cyan-500 text-xl"></i>
+            <div class="glass-card-premium card-accent-cyan p-10 group">
+                <div class="flex justify-between items-center mb-12">
+                    <span class="font-mono text-[10px] text-gray-200 tracking-widest">[ CODE_EYE_01 ]</span>
+                    <i class="fas fa-eye text-cyan-400 text-3xl icon-glow-wrap transition-all"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-white mb-4 group-hover:neon-text transition">Shoplifting Detection</h2>
-                <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                    Advanced behavioral analysis using <span class="text-cyan-400/80 font-mono">CNN-LSTM</span> architecture. 
-                    Processes high-frequency video frames to identify retail anomalies.
+                <h2 class="text-4xl font-bold text-white mb-5">Shoplifting Detection</h2>
+                <p class="text-gray-100 text-sm mb-10 leading-relaxed">
+                    Advanced behavioral analysis using <span class="text-cyan-300 font-mono">CNN-LSTM</span> architecture. Identifying retail anomalies via spatio-temporal tracking in high-res video.
                 </p>
-                <div class="flex gap-4 items-center">
-                    <a href="https://huggingface.co/spaces/jotaj30/shoplifting-detection" target="_blank" class="btn-launch px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                <div class="flex justify-between items-center gap-4">
+                    <a href="https://huggingface.co/spaces/jotaj30/shoplifting-detection" target="_blank" class="btn-launch bg-cyan-400 text-black px-8 py-3 text-[11px] uppercase tracking-widest font-bold">
                         Initialize Session
                     </a>
-                    <span class="text-[10px] font-mono text-green-500/60 uppercase">● Latency: 42ms</span>
+                    <span class="text-[10px] font-mono text-cyan-300/80 uppercase">Latency: 42ms</span>
                 </div>
             </div>
 
-            <div class="glass-card p-10 rounded-sm group">
-                <div class="flex justify-between items-start mb-8">
-                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_02 ]</span>
-                    <i class="fas fa-wave-square text-cyan-500 text-xl"></i>
+            <div class="glass-card-premium card-accent-cyan p-10 group">
+                <div class="flex justify-between items-center mb-12">
+                    <span class="font-mono text-[10px] text-gray-200 tracking-widest">[ VOCAL_MD_02 ]</span>
+                    <i class="fas fa-wave-square text-cyan-400 text-3xl icon-glow-wrap transition-all"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-white mb-4 group-hover:neon-text transition">Medical Speech Analysis</h2>
-                <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                    Acoustic feature extraction for <span class="text-cyan-400/80 font-mono">Symptom Prediction</span>. 
-                    Converts vocal patterns into diagnostic triage data via Streamlit.
+                <h2 class="text-4xl font-bold text-white mb-5">Medical Speech Analysis</h2>
+                <p class="text-gray-100 text-sm mb-10 leading-relaxed">
+                    Acoustic feature extraction for <span class="text-cyan-300 font-mono">Symptom Prediction</span>. Converting vocal patterns into triage-ready diagnostic data via Streamlit.
                 </p>
-                <div class="flex gap-4 items-center">
-                    <a href="https://huggingface.co/spaces/Ishitaagrawal03/Audio-Medical" target="_blank" class="btn-launch px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                <div class="flex justify-between items-center gap-4">
+                    <a href="https://huggingface.co/spaces/Ishitaagrawal03/Audio-Medical" target="_blank" class="btn-launch bg-cyan-400 text-black px-8 py-3 text-[11px] uppercase tracking-widest font-bold">
                         Initialize Session
                     </a>
-                    <span class="text-[10px] font-mono text-green-500/60 uppercase">● Status: Active</span>
+                    <span class="text-[10px] font-mono text-green-400/80 uppercase">Status: Active</span>
                 </div>
             </div>
 
-            <div class="glass-card p-10 rounded-sm group">
-                <div class="flex justify-between items-start mb-8">
-                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_03 ]</span>
-                    <i class="fas fa-brain text-purple-500 text-xl"></i>
+            <div class="glass-card-premium card-accent-purple p-10 group">
+                <div class="flex justify-between items-center mb-12">
+                    <span class="font-mono text-[10px] text-gray-200 tracking-widest">[ SEMANTIC_03 ]</span>
+                    <i class="fas fa-brain text-purple-400 text-3xl icon-glow-wrap transition-all"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-white mb-4 group-hover:text-purple-400 transition">Duplicate Detection</h2>
-                <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                    Semantic similarity engine powered by <span class="text-purple-400/80 font-mono">BERT Transformers</span>. 
-                    Cross-referencing Quora datasets to eliminate redundant queries.
+                <h2 class="text-4xl font-bold text-white mb-5">Duplicate Detection</h2>
+                <p class="text-gray-100 text-sm mb-10 leading-relaxed">
+                    Semantic similarity engine powered by <span class="text-purple-300 font-mono">BERT Transformers</span>. Cross-referencing large text datasets to eliminate redundancy.
                 </p>
-                <div class="flex gap-4 items-center">
-                    <a href="https://n8juaauz6yrhrysfdvx5x2.streamlit.app/" class="btn-launch !border-purple-500 !text-purple-500 hover:!bg-purple-500 hover:!text-black px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                <div class="flex justify-between items-center gap-4">
+                    <a href="https://n8juaauz6yrhrysfdvx5x2.streamlit.app/" target="_blank" class="btn-launch bg-purple-500 text-black px-8 py-3 text-[11px] uppercase tracking-widest font-bold">
                         Initialize Session
                     </a>
-                     <span class="text-[10px] font-mono text-green-500/60 uppercase">● Status: Active</span>
+                    <span class="text-[10px] font-mono text-purple-300/80 uppercase">Optimized: Active</span>
                 </div>
             </div>
 
-            <div class="glass-card p-10 rounded-sm group">
-                <div class="flex justify-between items-start mb-8">
-                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_04 ]</span>
-                    <i class="fas fa-utensils text-orange-500 text-xl"></i>
+            <div class="glass-card-premium card-accent-orange p-10 group">
+                <div class="flex justify-between items-center mb-12">
+                    <span class="font-mono text-[10px] text-gray-200 tracking-widest">[ CUISINE_04 ]</span>
+                    <i class="fas fa-utensils text-orange-400 text-3xl icon-glow-wrap transition-all"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-white mb-4 group-hover:text-orange-400 transition">Food Classification</h2>
-                <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                    Deep CNN model trained on <span class="text-orange-400/80 font-mono">50+ Indian Cuisines</span>. 
-                    Real-time image tagging for dietary tracking and food logging.
+                <h2 class="text-4xl font-bold text-white mb-5">Food Classification</h2>
+                <p class="text-gray-100 text-sm mb-10 leading-relaxed">
+                    Deep CNN model trained on <span class="text-orange-300 font-mono">50+ Indian Cuisines</span>. Real-time image tagging for dietary monitoring and food logging.
                 </p>
-                <div class="flex gap-4 items-center">
-                    <a href="https://indianfoodproject-v7shkokzubxwd42spfqs45.streamlit.app/" class="btn-launch !border-orange-500 !text-orange-500 hover:!bg-orange-500 hover:!text-black px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                <div class="flex justify-between items-center gap-4">
+                    <a href="https://indianfoodproject-v7shkokzubxwd42spfqs45.streamlit.app/" target="_blank" class="btn-launch bg-orange-400 text-black px-8 py-3 text-[11px] uppercase tracking-widest font-bold">
                         Initialize Session
                     </a>
-                    <span class="text-[10px] font-mono text-green-500/60 uppercase">● Latency: 42ms</span>
+                    <span class="text-[10px] font-mono text-orange-300/80 uppercase">Accuracy: 94.2%</span>
                 </div>
             </div>
 
-            <div class="glass-card p-10 rounded-sm group md:col-span-2">
-                <div class="flex justify-between items-start mb-8">
-                    <span class="font-mono text-xs text-gray-600 tracking-widest">[ PROJ_05 ]</span>
-                    <i class="fas fa-dove text-pink-500 text-xl"></i>
+            <div class="glass-card-premium card-accent-pink p-10 group md:col-span-2">
+                <div class="flex justify-between items-center mb-12">
+                    <span class="font-mono text-[10px] text-gray-200 tracking-widest">[ ECO_TRACK_05 ]</span>
+                    <i class="fas fa-dove text-pink-400 text-3xl icon-glow-wrap transition-all"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-white mb-4 group-hover:text-pink-400 transition">Endangered Bird Tracker</h2>
-                <p class="text-gray-400 font-light mb-8 leading-relaxed">
-                    Object detection for biodiversity monitoring. Using <span class="text-pink-400/80 font-mono">Computer Vision</span> 
-                    to track rare avian movements in Nepal's ecological zones.
+                <h2 class="text-4xl font-bold text-white mb-5">Endangered Bird Tracker</h2>
+                <p class="text-gray-100 text-sm mb-10 leading-relaxed">
+                    Object detection for biodiversity monitoring. Using <span class="text-pink-300 font-mono">Computer Vision</span> (YOLOv8) to track rare avian movements in vulnerable ecological zones.
                 </p>
-                <div class="flex gap-4 items-center">
-                    <a href="https://huggingface.co/spaces/Ishitaagrawal03/bird-identifier" class="btn-launch !border-pink-500 !text-pink-500 hover:!bg-pink-500 hover:!text-black px-6 py-2 text-xs uppercase tracking-widest font-bold">
+                <div class="flex flex-wrap gap-8 items-center">
+                    <a href="https://huggingface.co/spaces/Ishitaagrawal03/bird-identifier" target="_blank" class="btn-launch bg-pink-400 text-black px-8 py-3 text-[11px] uppercase tracking-widest font-bold">
                         Initialize Session
                     </a>
-                     <span class="text-[10px] font-mono text-green-500/60 uppercase">● Status: Active</span>
+                    <span class="text-[10px] font-mono text-pink-300/80 uppercase">Signal: Nominal</span>
                 </div>
             </div>
 
         </div>
 
-        <footer class="mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="font-mono text-[10px] tracking-widest text-gray-600 uppercase">
-                &copy; 2026 Jot Ajmani // Core_V3 // Terminal_Indore
+        <footer class="mt-40 pt-16 border-t border-white/5 flex flex-col items-center gap-10">
+            <div class="text-center">
+                <p class="font-mono text-[10px] text-gray-300 uppercase tracking-[0.4em] mb-2">Core Architect</p>
+                <p class="text-white font-bold tracking-widest">JOT AJMANI // DEPLOYMENT TERMINAL_07</p>
             </div>
-            <div class="flex gap-8 font-mono text-[10px] tracking-[0.2em] uppercase text-gray-500">
-                <span class="hover:text-cyan-500 cursor-pointer">GitHub</span>
-                <span class="hover:text-cyan-500 cursor-pointer">LinkedIn</span>
-                <span class="hover:text-cyan-500 cursor-pointer">Logs</span>
+            
+            <div class="flex gap-12 text-[11px] font-mono uppercase tracking-[0.3em]">
+                <a href="#" class="text-gray-300 hover:text-cyan-300 transition-all hover:scale-105">GitHub</a>
+                <a href="#" class="text-gray-300 hover:text-cyan-300 transition-all hover:scale-105">LinkedIn</a>
+                <a href="#" class="text-gray-300 hover:text-cyan-300 transition-all hover:scale-105">System Logs</a>
             </div>
-            <div class="text-[10px] font-mono text-cyan-900">
-                STK_009_X86_64_ACTIVE
+            
+            <div class="text-[10px] font-mono text-cyan-800 tracking-widest uppercase">
+                &copy; 2026 Jot Ajmani // All Systems Operational // STK_009_ACTIVE
             </div>
         </footer>
     </div>
-
 </body>
 </html>
